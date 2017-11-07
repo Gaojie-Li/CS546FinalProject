@@ -1,0 +1,23 @@
+{
+  "name": "cs546finalproject",
+  "version": "1.0.0",
+  "description": "CS 546 Final Project Team One Punch Man",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gaojie-Li/CS546FinalProject.git"
+  },
+  "author": "One Punch Man",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gaojie-Li/CS546FinalProject/issues"
+  },
+  "homepage": "https://github.com/Gaojie-Li/CS546FinalProject#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
+  }
+}
