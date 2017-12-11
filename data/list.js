@@ -1,5 +1,5 @@
-const mongoConnection = require("../config/mongoConnection");
-const list = mongoConnection.list;
+const mongoCollections = require("../config/mongoCollections");
+const list = mongoCollections.list;
 
 let exportedMethods = {
     createNewList(name, authorName) {
@@ -8,12 +8,18 @@ let exportedMethods = {
                 name: name,
                 author: authorName
             };
-
+            
             return listCollection.insertOne(newList).then((newInsertInfo) => {
                 return newInsertInfo.insertedId;
             }).then((newID) => {
                 return this.getListByID(newID);
             });
+        });
+    },
+
+    getAllLists() {
+        return list().then((listCollection) => {
+            return listCollection.find({}).toArray();
         });
     },
 
