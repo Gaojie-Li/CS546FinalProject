@@ -1,84 +1,67 @@
-const mongoConnection = require("../config/mongoConnection");
-const cards = mongoConnection.cards;
+const mongoCollections = require("../config/mongoCollections");
+const cards = mongoCollections.cards;
 
 let exportedMethods = {
-    createNewList(name, authorName) {
-        return list().then((listCollection) => {
-            let newList = {
-                name: name,
-                author: authorName
+    createNewCard(question, answer) {
+        return cards().then((cardsCollection) => {
+            let newCard = {
+                que: question,
+                ans: answer
             };
             
-            return listCollection.insertOne(newList).then((newInsertInfo) => {
+            return cardsCollection.insertOne(newCard).then((newInsertInfo) => {
                 return newInsertInfo.insertedId;
             }).then((newID) => {
-                return this.getListByID(newID);
-            });
-        });
-    },
-    createNewWord(word, discription) {
-        return words().then((wordsCollection) => {
-            let newWord = {
-                word: name,
-                author: authorName
-            };
-            
-            return listCollection.insertOne(newList).then((newInsertInfo) => {
-                return newInsertInfo.insertedId;
-            }).then((newID) => {
-                return this.getListByID(newID);
+                return this.getCardByID(newID);
             });
         });
     },
 
-
-
-    getAllLists() {
-        return list().then((listCollection) => {
-            return listCollection.find({}).toArray();
+    getAllCards() {
+        return cards().then((cardsCollection) => {
+            return cardsCollection.find({}).toArray();
         });
     },
 
-    getListByID(id) {
-        return list().then((listCollection) => {
-            return listCollection.findOne({ _id: id }).then((listInfo) => {
-                if (!listInfo) {
-                    throw "List not found";
-                }
+    getCardByID(id) {
+        return cards().then((cardsCollection) => {
+            return cardsCollection.findOne({_id: id}).then((cardInfo) => {
+                if (!cardInfo) {
+                    throw "Card not found";
+                }          
 
-                return listInfo;
+                return cardInfo;
             })
-        })
+        });
     },
 
-    changeListName(id, newName) {
-        return this.getListByID(id).then((currentList) => {
-            currentList.name = newName;
+    changeCardQuestion(id, newQue) {
+        return this.getCardByID(id).then((currentCard) => {
+            currentCard.que = newQue;
 
             let updateCommand = {
-                $set: currentList
+                $set: currentCard
             };
 
-            return list().then((listCollection) => {
-                return listCollection.updateOne({ _id: id }, updateCommand).then(() => {
-                    return this.getListByID(id);
+            return cards().then((cardsCollection) => {
+                return cardsCollection.updateOne({ _id: id }, updateCommand).then(() => {
+                    return this.getCardByID(id);
                 });
             });
         });
     },
 
-    // check correct or not
-    addWordToList(id, word) {
-        return this.getListByID(id).then((currentList) => {
-            return list().then((listCollection) => {
-                return listCollection.updateOne({ _id: id }, {
-                    $addToSet: {
-                        words: word
-                    }
-                }).then(() => {
-                    return listCollection.findOne({ _id: id }).then((list) => {
-                        return list.words[0];
-                    });
+    changeCardAnswer(id, newAns) {
+        return this.getCardByID(id).then((currentCard) => {
+            currentCard.ans = newAns;
+
+            let updateCommand = {
+                $set: currentCard
+            };
+
+            return cards().then((cardsCollection) => {
+                return cardsCollection.updateOne({ _id: id }, updateCommand).then(() => {
+                    return this.getCardByID(id);
                 });
             });
         });
