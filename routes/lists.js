@@ -8,15 +8,17 @@ router.get('/', function(req, res, next) {
         res.status(200).json(lists);
     }).catch((err) => {
         console.log(err.message);
-        res.status(404).json({ error: 'list not found' });
+        res.status(404).json({ error: 'List not found' });
     });
 });
 
 router.get('/:id', function(req, res, next) {
     listsData.getListByID(req.params.id).then((list) => {
         // res.render('index', { list_json: list });
-        res.json(list);
-    }).catch(() => {
+        res.render('list', {list_json: list});
+        // res.json(list);
+    }).catch((err) => {
+        console.log(err.message);
         res.status(404).json({ error: "List not found" });
     });
 });

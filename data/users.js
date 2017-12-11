@@ -1,5 +1,5 @@
-const mongoConnection = require("../config/mongoConnection");
-const user = mongoConnection.user;
+const mongoCollections = require("../config/mongoCollections");
+const user = mongoCollections.user;
 
 let exportedMethods = {
     // All user related database access functions

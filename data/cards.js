@@ -1,6 +1,8 @@
 const mongoCollections = require("../config/mongoCollections");
 const cards = mongoCollections.cards;
 
+var ObjectID = require('mongodb').ObjectID;
+
 let exportedMethods = {
     createNewCard(question, answer) {
         return cards().then((cardsCollection) => {
@@ -24,6 +26,7 @@ let exportedMethods = {
     },
 
     getCardByID(id) {
+        id = ObjectID(id);
         return cards().then((cardsCollection) => {
             return cardsCollection.findOne({_id: id}).then((cardInfo) => {
                 if (!cardInfo) {

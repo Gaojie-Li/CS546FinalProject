@@ -1,5 +1,8 @@
 const mongoCollections = require("../config/mongoCollections");
 const lists = mongoCollections.lists;
+const cards = mongoCollections.cards;
+
+var ObjectID = require('mongodb').ObjectID;
 
 let exportedMethods = {
     createNewlist(name, authorName) {
@@ -24,13 +27,32 @@ let exportedMethods = {
     },
 
     getListByID(id) {
+        id = ObjectID(id);
+
         return lists().then((listsCollection) => {
             return listsCollection.findOne({ _id: id }).then((listInfo) => {
                 if (!listInfo) {
                     throw "List not found";
-                }
+                };
 
-                return listInfo;
+                // TODO: Handle cards in function or just store in list
+                return cards().then((cardsCollection) => {
+                    var list_cards = {};
+                    var pms = [];
+                    for (card_id in listInfo.cards)
+                    {
+                        pms.push(
+                            cardsCollection.findOne( {_id: listInfo.cards[card_id] }).then((card) => {
+                                list_cards[card.que] = card.ans; 
+                            })
+                        )
+                    };
+                    return Promise.all(pms).then(() => {
+                        listInfo['cardsInfo'] = list_cards;
+                        return listInfo;
+                    });
+                });
+                
             })
         })
     },
@@ -53,23 +75,22 @@ let exportedMethods = {
 
     // check correct or not
     // TODO:
-    // need to change latter
-    addCardToList(id, card) {
+    // need to change return
+    addCardToList(id, card_id) {
         return this.getListByID(id).then((currentList) => {
             return lists().then((listsCollection) => {
                 return listsCollection.updateOne({ _id: id }, {
                     $addToSet: {
-                        words: word
+                        cards: card_id
                     }
                 }).then(() => {
                     return listsCollection.findOne({ _id: id }).then((list) => {
-                        return list.words[0];
+                        return list.cards[0];
                     });
                 });
             });
         });
     }
-
 
 }
 
