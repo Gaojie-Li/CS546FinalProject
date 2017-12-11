@@ -1,9 +1,9 @@
-const userData = require("./user");
-const listData = require("./list");
-const wordData = require("./word");
+const usersData = require("./users");
+const listsData = require("./lists");
+const cardsData = require("./cards");
 
 module.exports = {
-    user: userData,
-    list: listData,
-    word: wordData
+    users: usersData,
+    lists: listsData,
+    cards: cardsData
 };

@@ -1,5 +1,5 @@
-const mongoCollections = require("../config/mongoCollections");
-const list = mongoCollections.list;
+const mongoConnection = require("../config/mongoConnection");
+const cards = mongoConnection.cards;
 
 let exportedMethods = {
     createNewList(name, authorName) {
@@ -16,6 +16,22 @@ let exportedMethods = {
             });
         });
     },
+    createNewWord(word, discription) {
+        return words().then((wordsCollection) => {
+            let newWord = {
+                word: name,
+                author: authorName
+            };
+            
+            return listCollection.insertOne(newList).then((newInsertInfo) => {
+                return newInsertInfo.insertedId;
+            }).then((newID) => {
+                return this.getListByID(newID);
+            });
+        });
+    },
+
+
 
     getAllLists() {
         return list().then((listCollection) => {
@@ -67,8 +83,6 @@ let exportedMethods = {
             });
         });
     }
-
-
 }
 
 module.exports = exportedMethods;

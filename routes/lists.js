@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const data = require("../data");
-const listData = data.list;
+const listData = data.lists;
 
 router.get('/', function(req, res, next) {
     listData.getAllLists().then((listsData) => {
