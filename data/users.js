@@ -1,5 +1,5 @@
-const mongoConnection = require("../config/mongoConnection");
-const user = mongoConnection.user;
+const mongoCollections = require("../config/mongoCollections");
+const user = mongoCollections.users;
 
 let exportedMethods = {
     // All user related database access functions
@@ -24,6 +24,31 @@ let exportedMethods = {
             return userCollection.findOne({ _id: id }).then((userProfile) => {
                 if (!userProfile) {
                     throw "User not found";
+                }
+
+                return userProfile;
+            })
+        })
+    },
+
+    getUserByUsername(username) {
+        return user().then((userCollection) => {
+            return userCollection.findOne({ username: username }).then((userProfile) => {
+                if (!userProfile) {
+                    throw 'User not found';
+                }
+
+                return userProfile;
+            })
+        })
+    },
+
+    validateUser(username, password) {
+        return user().then((userCollection) => {
+            return userCollection.findOne({ username: username }).then((userProfile) => {
+                // var validation = 
+                if (/* password doesn't match */ password != userProfile.password) {
+                    throw 'Invalid login';
                 }
 
                 return userProfile;

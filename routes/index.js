@@ -1,9 +1,27 @@
-var express = require('express');
-var router = express.Router();
+const homeRoute = require('./home');
+const loginRoute = require('./login');
+const listsRoute = require('./lists');
+const registerRoute = require('./register');
+const profileRoute = require('./profile');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Flashcards Plus' });
-});
+const constructorMethod = (app) => {
+    app.get('/', function (req, res) {
+        if (req.user) {
+            res.redirect('/private');
+        } else {
+            res.redirect('/login');
+        }
+    });
 
-module.exports = router;
+    app.use('/home', homeRoute);
+    app.use('/login', loginRoute);
+    app.use('/lists', listsRoute);
+    app.use('/register', registerRoute);
+    app.use('/profile', profileRoute);
+
+    app.use('*', (req, res) => {
+        res.status(404).json({ error: 'Not found' });
+    });
+}
+
+module.exports = constructorMethod;
