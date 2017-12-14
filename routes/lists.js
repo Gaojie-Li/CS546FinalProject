@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     listsData.getListByID(req.params.id).then((list) => {
         // res.render('index', { list_json: list });
-        res.render('list', {list_json: list});
+        res.render('contents/list', {list_json: list});
         // res.json(list);
     }).catch((err) => {
         console.log(err.message);

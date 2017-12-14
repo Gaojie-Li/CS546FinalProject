@@ -1,6 +1,8 @@
 const mongoCollections = require("../config/mongoCollections");
 const user = mongoCollections.users;
 
+var ObjectID = require('mongodb').ObjectID;
+
 let exportedMethods = {
     // All user related database access functions
     registerNewUser(username, email, password) {
@@ -44,6 +46,7 @@ let exportedMethods = {
     },
 
     validateUser(username, password) {
+        console.log('invalid user');
         return user().then((userCollection) => {
             return userCollection.findOne({ username: username }).then((userProfile) => {
                 // var validation = 

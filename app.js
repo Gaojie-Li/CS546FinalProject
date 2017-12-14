@@ -7,10 +7,18 @@ var cookieParser = require('cookie-parser');
 
 var configRoutes = require('./routes');
 
-var app = express();
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
 
+var app = express();
 /************************ SETUPS *************************/
 // View engine set up
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'hbs');
 
@@ -19,6 +27,10 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
+
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 configRoutes(app);
 

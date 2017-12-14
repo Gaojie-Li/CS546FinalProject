@@ -1,27 +1,37 @@
 var express = require('express');
 var passport = require('passport');
-var LocalStrategy = require('passport-local');
-var flash = require('connect-flash');
-var session = require('express-session');
+var Strategy = require('passport-local').Strategy;
 
 var usersData = require('../data/users');
 
 var router = express.Router();
 
-router.use(flash());
-router.use(session({ secret: "tada", resave: false, saveUninitialized: false }));
+passport.use(new Strategy(
+    async function (username, password, cb) {
+        console.log('patpat');
+        try {
+            record = await usersData.validateUser(username, password);
+            return cb(null, record);
+        } catch (error) {
+            return cb(null, false, {
+                message: 'Incorrect Login info'
+            });
+        }
+    }));
 
-/******************** PASSPORT FUNCTIONALITIES ******************/
-passport.use(new LocalStrategy(
-    { passReqToCallback: true },
-    function (req, username, password, done) {
-        usersData.validateUser(username, password).then((user) => {
-            return done(null, user);
-        }, (reject) => {
-            return done(null, false, 'Invalid username or password.');
-        });
-    }
-));
+// passport.serializeUser(function (user, cb) {
+//     cb(null, user);
+// });
+
+// passport.deserializeUser(function (id, cb) {
+//     usersData.getUserByID(id, function (err, user) {
+//         if (err) {
+//             return cb(err);
+//         }
+//         cb(null, user);
+//     });
+// });
+
 
 passport.serializeUser(function (user, callback) {
     callback(null, user.username)
@@ -37,16 +47,30 @@ passport.deserializeUser(function (username, callback) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('contents/login', { title: 'Please Login to your account' });
+    if (req.user)
+        res.redirect('home');
+    else
+        res.render('contents/login', {
+            title: 'Please Login to your account'
+        });
 });
 
-/* POST submit login info */
-router.post('/',
-    passport.authenticate('local', {
-        successRedirect: '/home',
-        failureRedirect: '/login',
-        failureFlash: true
-    })
-);
+router.post('/', function (req, res, next) {
+    console.log('in post');
+    passport.authenticate('local', function (err, user, info) {
+        if (err) {
+            return next(err)
+        }
+        if (!user) {
+            return res.redirect('login')
+        }
+        req.logIn(user, function (err) {
+            if (err) {
+                return next(err);
+            }
+            return res.redirect('home');
+        });
+    })(req, res, next);
+});
 
 module.exports = router;
