@@ -7,7 +7,7 @@ const profileRoute = require('./profile');
 const constructorMethod = (app) => {
     app.get('/', function (req, res) {
         if (req.user) {
-            res.redirect('/private');
+            res.redirect('/home');
         } else {
             res.redirect('/login');
         }
