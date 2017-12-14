@@ -48,7 +48,7 @@ passport.deserializeUser(function (username, callback) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
     if (req.user)
-        res.redirect('home');
+        res.redirect('/home');
     else
         res.render('contents/login', {
             title: 'Please Login to your account'
