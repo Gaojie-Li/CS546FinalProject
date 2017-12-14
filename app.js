@@ -8,18 +8,19 @@ var cookieParser = require('cookie-parser');
 var configRoutes = require('./routes');
 
 var app = express();
-configRoutes(app);
 
 /************************ SETUPS *************************/
 // View engine set up
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
+
+configRoutes(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

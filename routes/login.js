@@ -37,7 +37,7 @@ passport.deserializeUser(function (username, callback) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('login', { title: 'Please Login to your account' });
+    res.render('contents/login', { title: 'Please Login to your account' });
 });
 
 /* POST submit login info */

@@ -47,7 +47,12 @@ let exportedMethods = {
         return user().then((userCollection) => {
             return userCollection.findOne({ username: username }).then((userProfile) => {
                 // var validation = 
-                if (/* password doesn't match */ password != userProfile.password) {
+                if (!userProfile) {
+                    throw 'User not found.';
+                }
+
+                /* password doesn't match */
+                if (password != userProfile.password) {
                     throw 'Invalid login';
                 }
 

@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('register', { title: 'Register new account' });
+    res.render('contents/register', { title: 'Register new account' });
 });
 
 // POST method
