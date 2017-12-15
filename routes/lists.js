@@ -5,18 +5,18 @@ const listsData = data.lists;
 const cardsData = data.cards;
 
 router.get('/', function (req, res, next) {
-    // listsData.getAllLists().then((lists) => {
-    //     res.status(200).json(lists);
-    // }).catch((err) => {
-    //     console.log(err.message);
-    //     res.status(404).json({ error: 'List not found' });
-    // });
-    if (!req.user)
-        res.redirect('/');
-
-    res.render('contents/lists', {
-        title: 'Create new list'
+    listsData.getAllLists().then((lists) => {
+        res.status(200).json(lists);
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(404).json({ error: 'List not found' });
     });
+    // if (!req.user)
+    //     res.redirect('/');
+
+    // res.render('contents/lists', {
+    //     title: 'Create new list'
+    // });
 });
 
 router.get('/:id', function (req, res, next) {
