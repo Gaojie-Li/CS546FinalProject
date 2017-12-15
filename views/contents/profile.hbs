@@ -12,16 +12,16 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">User Profile</a>
+                <a class="navbar-brand" href="/home">User Profile</a>
             </div>
         </div>
     </nav>
 
     <div class="card">
         <img src="/images/saitamaSensai.jpg" alt="saitama" style="width:100%">
-        <h1>Saitama</h1>
-        <p class="title">Representative of One Punch</p>
-        <p>JiaLiDun University</p>
+        <h1>{{ userInfo.username}}</h1>
+        <p class="title">{{ userInfo.email }}</p>
+        {{!-- <p>JiaLiDun University</p> --}}
         <div style="margin: 24px 0;">
             <a href="#">
                 <i class="fa fa-dribbble"></i>

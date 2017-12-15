@@ -20,6 +20,14 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/home">Lists: {{ list_json.name }}</a>
+            </div>
+        </div>
+    </nav>
+    
   <div class="sidenav">
     {{#each list_json.cardsInfo}}
     <a href="#" onclick="updateCard('{{@key}}', '{{this}}')">{{@key}}</a>
