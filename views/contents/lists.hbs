@@ -1,71 +1,119 @@
 <!DOCTYPE html>
-<html>
-<title>List Information</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-<header>
-    <h1>
-        <b>List Information</b>
-    </h1>
-</header>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>FlipCard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/css/lists.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+    <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+</head>
 
-<div>
-    <form action="/lists" method="post">
-        <div>
-            <label>List Name: </label>
-            <input type="text" name="list_name" />
-        </div>
+<body>
+    <div class="sidenav">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
 
-        <div>
-            <label>Description: </label>
-            <input type="text" name="description" />
-        </div>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
 
-        <div>
-            <button type="submit" class="btn">Create New List</button>
-        </div>
-    </form>
-</div>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
 
-<div>
-    <form action="/lists/{{list_json._id}}" method="post">
-        <div>
-            <label>Question: </label>
-            <input type="text" name="question" />
-        </div>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
 
-        <div>
-            <label>Answer: </label>
-            <input type="text" name="answer" />
-        </div>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
 
-        <div>
-            <button type="submit" class="btn">Create New Card</button>
-        </div>
-    </form>
-
-    <p> List Name: {{list_json.name}} </p>
-    <p> List Author: {{list_json.author}} </p>
-    {{!--
-    <p> {{list_json.cardsInfo}} </p> --}}
-
-    <div class="cards">
-        {{#each list_json.cardsInfo}}
-        <div class="card">
-            <p>
-                <b>{{@key}}</b>
-            </p>
-            <p>{{this}}</p>
-        </div>
-        {{/each}}
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="buttons">
+        <a href="#">
+            <img src="/images/lastOne.svg" height="120" width="120" onclick="lastOne()">
+        </a>
+        <a href="#">
+            <img src="/images/nextOne.svg" height="120" width="120" onclick="nextOne()">
+        </a>
+        <img src="/images/plus.svg" height="120" width="120" onclick="div_show()">
     </div>
 
-</div>
+    <div class="hiddenForm" id="hiddenForm">
+        <div class="add-form">
+            <form action="" method="post">
+                <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
+                <div class="form-group">
+                    <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
+                </div>
+                <h2>Add a new word</h2>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="word">Word:</label>
+                            <input type="text" class="form-control" id="newword" placeholder="new word">
+                        </div>
+                    </div>
 
-<script>
-</script>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="definition">Definition:</label>
+                            <!-- <input type="text" class="form-control definition" id="definition"> -->
+                            <textarea id="definition" class="form-control" rows="6"></textarea>
+                        </div>
+                    </div>
 
+                </div>
+
+                <button onclick="submit()">
+                    <img src="/images/checked.png" height="100" width="100" class="pic">
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <label id="label" class="forCard">
+        <input type="checkbox" />
+        <div class="card">
+            <div class="front">Front</div>
+            <div class="back">Back</div>
+        </div>
+    </label>
 </body>
+<script>
+    function div_show() {
+        document.getElementById("label").style.display = "none";
+        document.getElementById('hiddenForm').style.display = "block";
+        // alert("This is valid");
+    }
+
+    function div_hide() {
+        document.getElementById('hiddenForm').style.display = "none";
+        document.getElementById('label').style.display = "block";
+    }
+</script>
 
 </html>

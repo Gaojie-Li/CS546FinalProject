@@ -1,0 +1,244 @@
+body {
+  background: #f17563;
+  font-family: Open Sans;
+  font-size: 50px;
+  color: #222;
+}
+
+.forCard {
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  display: block;
+  width: 700px;
+  height: 600px;
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+  z-index: 20;
+}
+
+.card div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  text-align: center;
+  line-height: 200px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+
+.card .back {
+  background: #222;
+  color: #fff;
+  -webkit-transform: rotateX(180deg);
+  padding-top: 100px;
+  transform: rotateX(180deg);
+}
+
+.card .front {
+  padding-top: 100px;
+}
+
+label:hover .card {
+  -webkit-transform: rotateX(20deg);
+  transform: rotateX(20deg);
+  box-shadow: 0 20px 20px rgba(50, 50, 50, 0.2);
+}
+
+input {
+  display: none;
+}
+
+:checked + .card {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+}
+
+label:hover :checked + .card {
+  transform: rotateX(160deg);
+  -webkit-transform: rotateX(160deg);
+  box-shadow: 0 20px 20px rgba(255, 255, 255, 0.2);
+}
+
+.sidenav {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #2e2c2c;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.buttons {
+  margin-left: 825px;
+  padding-top: 60px;
+}
+
+img {
+  padding-right: 50px;
+  /* text-align: center; */
+}
+
+.popupForm {
+  position: absolute;
+  left: 50%;
+  top: 17%;
+  margin-left: -200px;
+}
+
+.hiddenForm {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  display: none;
+  position: fixed;
+  background-color: #313131;
+  overflow: auto;
+}
+
+/* a {
+    background: #f17563;
+  } */
+
+.add-form input[type="checkbox"] {
+  margin-top: 3px;
+}
+
+.add-form .btn {
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 140px;
+  outline: none !important;
+}
+
+.add-form .row div:first-child {
+  padding-right: 10px;
+}
+
+.add-form .row div:last-child {
+  padding-left: 10px;
+}
+.form-control {
+  height: 40px;
+  box-shadow: none;
+  color: #969fa4;
+}
+
+.form-control:focus {
+  border-color: #5cb85c;
+}
+
+.form-control,
+.btn {
+  border-radius: 3px;
+}
+
+.add-form {
+  display: block;
+  /* text-align: center; */
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px 0;
+  padding-bottom: 300px;
+}
+
+.add-form h2 {
+  color: #636363;
+  margin: 0 0 15px;
+  position: relative;
+  text-align: center;
+}
+
+.add-form h2:before,
+.add-form h2:after {
+  content: "";
+  height: 2px;
+  width: 10%;
+  background: #d4d4d4;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+}
+
+.add-form h2:before {
+  left: 0;
+}
+
+.add-form h2:after {
+  right: 0;
+}
+
+.add-form .hint-text {
+  color: #999;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.add-form form {
+  color: #999;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  background: #f2f3f7;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  padding-top: 0px;
+}
+
+.add-form .form-group {
+  margin-bottom: 20px;
+}
+
+.add-form a:hover {
+  text-decoration: none;
+}
+
+.exitButton {
+  margin-left: 320px;
+  margin-top: 0px;
+}
+
+.pic {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+button {
+  padding: 0 0 0 0px;
+  border-color: transparent;
+  background-color: transparent;
+  margin-left: 120px;
+}
