@@ -12,11 +12,18 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 
+hbs = require('hbs');
+hbs.registerHelper('json', function (content) {
+    return JSON.stringify(content);
+});
+
 var app = express();
 /************************ SETUPS *************************/
 // View engine set up
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 
 app.set('views', path.join(__dirname, '/views'));
@@ -28,7 +35,11 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
