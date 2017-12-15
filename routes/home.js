@@ -3,7 +3,18 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('contents/home', { title: 'Flashcards Plus' });
+    if (!req.user){
+        res.render('contents/login', {
+            title: 'Please Login to your account'
+        });
+    }
+    else{
+        console.log(req.user);
+        res.render('contents/home', {
+            title: 'Flashcards Plus',
+            userinfo: req.user
+        });
+    }
 });
 
 module.exports = router;
