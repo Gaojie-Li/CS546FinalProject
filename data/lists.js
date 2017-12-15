@@ -32,7 +32,9 @@ let exportedMethods = {
         id = ObjectID(id);
 
         return lists().then((listsCollection) => {
-            return listsCollection.findOne({ _id: id }).then((listInfo) => {
+            return listsCollection.findOne({
+                _id: id
+            }).then((listInfo) => {
                 if (!listInfo) {
                     throw "List not found";
                 };
@@ -43,7 +45,9 @@ let exportedMethods = {
                     var pms = [];
                     for (card_id in listInfo.cards) {
                         pms.push(
-                            cardsCollection.findOne({ _id: listInfo.cards[card_id] }).then((card) => {
+                            cardsCollection.findOne({
+                                _id: listInfo.cards[card_id]
+                            }).then((card) => {
                                 list_cards[card.que] = card.ans;
                             })
                         )
@@ -67,7 +71,9 @@ let exportedMethods = {
             };
 
             return lists().then((listsCollection) => {
-                return listsCollection.updateOne({ _id: id }, updateCommand).then(() => {
+                return listsCollection.updateOne({
+                    _id: id
+                }, updateCommand).then(() => {
                     return this.getListByID(id);
                 });
             });
@@ -78,14 +84,19 @@ let exportedMethods = {
     // TODO:
     // need to change return
     addCardToList(id, card_id) {
+        id = ObjectID(id);
         return this.getListByID(id).then((currentList) => {
             return lists().then((listsCollection) => {
-                return listsCollection.updateOne({ _id: id }, {
+                return listsCollection.updateOne({
+                    _id: id
+                }, {
                     $addToSet: {
                         cards: card_id
                     }
                 }).then(() => {
-                    return listsCollection.findOne({ _id: id }).then((list) => {
+                    return listsCollection.findOne({
+                        _id: id
+                    }).then((list) => {
                         return list.cards[0];
                     });
                 });
