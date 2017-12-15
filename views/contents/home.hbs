@@ -3,19 +3,50 @@
 <title>{{title}}</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/w3.css">
 
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-    <link rel="stylesheet" href="/css/home.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
 <body class="w3-light-grey w3-content" style="max-width:1600px">
+  <!--add list form-->
+  <div class="hiddenForm" id="hiddenForm">
+    <div class="add-form">
+      <form action="" method="post">
+        <div class="form-group">
+          <button class="lastnext" type="button">
+            <img class="exitButton" id="close" src="/images/closeButton.svg" height="50" width="50" onclick="div_hide()">
+          </button>
+        </div>
+        <h2>Add a new list</h2>
+        <div class="form-group">
+          <div class="row">
+            <div class="form-group">
+              <label for="word">Name:</label>
+              <input type="text" class="form-control" id="newlist" placeholder="new list">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="definition">Description:</label>
+              <!-- <input type="text" class="form-control definition" id="definition"> -->
+              <textarea id="definition" class="form-control" rows="6" cols="10" charswidth="24" placeholder="some new words"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <button onclick="submit()" class="checked">
+          <img src="/images/checked.png" height="70" width="70" class="pic">
+        </button>
+
+      </form>
+    </div>
+  </div>
 
   <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
@@ -52,127 +83,65 @@
           <b>{{title}}</b>
         </h1>
         <div class="w3-section w3-bottombar w3-padding-16">
-          <span class="w3-margin-right">Switch:</span>
-          <button class="w3-button w3-black">My Lists</button>
-          <button class="w3-button w3-white">ALL Cards</button>
+          {{!--
+          <span class="w3-margin-right">Switch:</span> --}}
+          <button class="w3-button w3-black" onclick="div_show()">Add List</button>
+          {{!--
+          <button class="w3-button w3-white">ALL Cards</button> --}}
         </div>
       </div>
     </header>
 
     <!-- First Photo Grid-->
     <div id="first_grid" class="w3-row-padding">
-
-      <div onclick="div_show()">
-        <div class="w3-third w3-container w3-margin-bottom">
-          {{!-- <img src="/images/plus.png" alt="Norway" style="width:10%" class="w3-hover-opacity"> --}}
-          <div class="w3-container w3-white">
-            <p>
-              <b>Add new list</b>
-            </p>
-          </div>
-        </div>
+      <div class="w3-row-padding">
       </div>
 
-    <!-- Second Photo Grid-->
-    <div class="w3-row-padding">
+
+      <!-- Footer -->
+      <footer class="w3-container w3-padding-32 w3-dark-grey">
+        <p>Team One Punch Man: Gaojie Li, Zheng Li, Tianye Qi, Hanrun Li</p>
+      </footer>
+
+      <!-- End page content -->
     </div>
 
-    <!-- Pagination -->
-    {{!-- <div class="w3-center w3-padding-32">
-      <div class="w3-bar">
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-        <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-      </div>
-    </div> --}}
+    <script>
+      // Script to open and close sidebar
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
 
-    <!-- Footer -->
-    <footer class="w3-container w3-padding-32 w3-dark-grey">
-      <p>Team One Punch Man: Gaojie Li, Zheng Li, Tianye Qi, Hanrun Li</p>
-    </footer>
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
 
-    <!-- End page content -->
-  </div>
+      jsonLists = {{{ json listsInfo }}};
 
-  <div class="hiddenForm" id="hiddenForm">
-        <div class="add-form">
-            <form action="/lists" method="post">
-                <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
-                <div class="form-group">
-                    {{!-- <button class="lastnext">
-                        <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
-                    </button> --}}
-                </div>
-                <h2>Add a new list</h2>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="form-group">
-                            <label for="list_name">Listname:</label>
-                            <input type="text" class="form-control" id="list_name" placeholder="Name" name="list_name">
-                        </div>
-                    </div>
+    </script>
 
-                    <div class="row">
-                        <div class="form-group">
-                            <label for="description">Description:</label>
-                            <!-- <input type="text" class="form-control definition" id="definition"> -->
-                            <textarea id="description" class="form-control" rows="6" cols="10" charswidth="24" name="description"></textarea>
-                        </div>
-                    </div>
-
-                </div>
-
-                <button onclick="submit()" class="checked">
-                    <img src="/images/checked.png" height="70" width="70" class="pic">
-                </button>
-
-            </form>
-        </div>
-    </div>
-
-  <script>
-    // Script to open and close sidebar
-    function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("myOverlay").style.display = "block";
-    }
-
-    function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("myOverlay").style.display = "none";
-    }
-
-    jsonLists = {{{ json listsInfo }}};
-
-    function div_show() {
-        {{!-- document.getElementById("label").style.display = "none"; --}}
-        document.getElementById('hiddenForm').style.display = "block";
-        // alert("This is valid");
-    }
-
-    function div_hide() {
-        document.getElementById('hiddenForm').style.display = "none";
-        document.getElementById('label').style.display = "block";
-    }
-
-    function updateCard(key, value) {
-        var frontdiv = document.getElementById('cardfront');
-        frontdiv.innerHTML = key;
-        var backdiv = document.getElementById('cardback');
-        backdiv.innerHTML = value;
-    }
-
-  </script>
-
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-    crossorigin="anonymous"></script>
-  <script src="/javascripts/home_lists.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
+    <script src="/javascripts/home_lists.js"></script>
 
 </body>
+
+<script>
+  function div_show() {
+    //alert("button has been clicked");
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById('hiddenForm').style.display = "block";
+    // alert("This is valid");
+  }
+
+  function div_hide() {
+    document.getElementById('hiddenForm').style.display = "none";
+    document.getElementById('mySidebar').style.display = "block";
+  }
+</script>
 
 </html>
