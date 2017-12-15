@@ -1,20 +1,96 @@
-<form action="/register" method="post">
-    <div>
-        <label>Email: </label>
-        <input type="text" name="email" />
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div>
-        <label>Username: </label>
-        <input type="text" name="username" />
-    </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/register.css" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password" />
-    </div>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Flip Card</a>
+            </div>
+        </div>
+    </nav>
 
-    <div>
-        <button type="register" class="btn">Register</button>
+    <div class="signup-form">
+        <form action="" method="post">
+            <h2>Register</h2>
+            <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+
+            <div class="form-group">
+                {{!--
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" name="first_name" placeholder="First Name" required="required">
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required">
+                    </div>
+                </div> --}}
+                <input type="text" class="form-control" name="username" placeholder="username" required="required">
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+
+            {{!--
+            <div class="form-group">
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+            </div> --}}
+
+            <div class="form-group">
+                <label class="checkbox-inline">
+                    <input type="checkbox" required="required"> I accept the
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy Policy</a>
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+            </div>
+            <div class="form-group">
+
+            </div>
+        </form>
+        <div class="text-center">Already have an account?
+            <a href="#">Sign in</a>
+        </div>
     </div>
-</form>
+</body>
+<footer class="footer">
+    <div class="container">
+        <p class="hint-text">Or Sign up with</p>
+        <ul class="social-icon">
+            <a href="#" class="social">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social">
+                <i class="fa fa-google" aria-hidden="true"></i>
+            </a>
+        </ul>
+    </div>
+</footer>
+
+</html>
