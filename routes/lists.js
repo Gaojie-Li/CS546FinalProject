@@ -35,7 +35,7 @@ router.get('/:id', function (req, res, next) {
 router.post('/:id', function (req, res) {
     cardsData.createNewCard(req.body.question, req.body.answer).then((newCard) => {
         listsData.addCardToList(req.params.id, newCard._id).then((insertedCard) => {
-            res.status(200).json(insertedCard);
+            res.redirect('/lists/' + req.params.id);
         }).catch((err) => {
             res.status(404).json({
                 error: err.message

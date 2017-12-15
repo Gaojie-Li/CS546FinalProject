@@ -21,35 +21,9 @@
 
 <body>
     <div class="sidenav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        {{#each list_json.cardsInfo}}
+        <a href="#" onclick="">{{@key}}</a>
+        {{/each}}
     </div>
     <div class="buttons">
         <button class="lastnext">
@@ -65,7 +39,7 @@
 
     <div class="hiddenForm" id="hiddenForm">
         <div class="add-form">
-            <form action="" method="post">
+            <form action="/lists/{{list_json._id}}" method="post">
                 <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
                 <div class="form-group">
                     <button class="lastnext">
