@@ -103,7 +103,7 @@ label:hover :checked + .card {
 
 .buttons {
   margin-left: 825px;
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 img {
@@ -236,9 +236,23 @@ img {
   padding-right: 0px;
 }
 
-button {
+.checked {
   padding: 0 0 0 0px;
   border-color: transparent;
   background-color: transparent;
   margin-left: 120px;
+}
+
+.lastnext {
+  padding: 0 0 0 0px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+textarea {
+  resize: vertical;
 }

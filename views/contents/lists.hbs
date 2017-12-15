@@ -52,13 +52,15 @@
         <a href="#">Contact</a>
     </div>
     <div class="buttons">
-        <a href="#">
-            <img src="/images/lastOne.svg" height="120" width="120" onclick="lastOne()">
-        </a>
-        <a href="#">
-            <img src="/images/nextOne.svg" height="120" width="120" onclick="nextOne()">
-        </a>
-        <img src="/images/plus.svg" height="120" width="120" onclick="div_show()">
+        <button class="lastnext">
+            <img src="/images/left-arrow.svg" height="120" width="120" onclick="lastOne()">
+        </button>
+        <button class="lastnext">
+            <img src="/images/right-arrow.svg" height="120" width="120" onclick="nextOne()">
+        </button>
+        <button class="lastnext">
+            <img src="/images/plus.svg" height="120" width="120" onclick="div_show()">
+        </button>
     </div>
 
     <div class="hiddenForm" id="hiddenForm">
@@ -66,7 +68,9 @@
             <form action="" method="post">
                 <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
                 <div class="form-group">
-                    <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
+                    <button class="lastnext">
+                        <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
+                    </button>
                 </div>
                 <h2>Add a new word</h2>
                 <div class="form-group">
@@ -81,14 +85,14 @@
                         <div class="form-group">
                             <label for="definition">Definition:</label>
                             <!-- <input type="text" class="form-control definition" id="definition"> -->
-                            <textarea id="definition" class="form-control" rows="6"></textarea>
+                            <textarea id="definition" class="form-control" rows="6" cols="10" charswidth="24"></textarea>
                         </div>
                     </div>
 
                 </div>
 
-                <button onclick="submit()">
-                    <img src="/images/checked.png" height="100" width="100" class="pic">
+                <button onclick="submit()" class="checked">
+                    <img src="/images/checked.png" height="70" width="70" class="pic">
                 </button>
 
             </form>
