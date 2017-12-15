@@ -50,7 +50,8 @@ router.post('/:id', function (req, res) {
 
 router.post("/", (req, res) => {
     listsData.createNewlist(req.body.list_name, req.body.description, req.user.username).then((list_id) => {
-        res.status(200).json(list_id);
+        // res.status(200).json(list_id);
+        res.redirect("/");
     }).catch((err) => {
         res.status(404).json({
             error: err.message

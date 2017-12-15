@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/w3.css">
 
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
   <!-- Sidebar/menu -->
@@ -51,17 +61,17 @@
 
     <!-- First Photo Grid-->
     <div id="first_grid" class="w3-row-padding">
-      {{!-- <a href="lists/5a2debc22d0fb747dd98cf1b">
+
+      <div onclick="div_show()">
         <div class="w3-third w3-container w3-margin-bottom">
-          <img src="/images/web.jpeg" alt="Norway" style="width:100%" class="w3-hover-opacity">
+          {{!-- <img src="/images/plus.png" alt="Norway" style="width:10%" class="w3-hover-opacity"> --}}
           <div class="w3-container w3-white">
             <p>
-              <b>Web Technology</b>
+              <b>Add new list</b>
             </p>
-            <p>Study List of Web Technology, you can study things like basic HTML tags and more. Have fun!</p>
           </div>
         </div>
-      </a> --}}
+      </div>
 
     <!-- Second Photo Grid-->
     <div class="w3-row-padding">
@@ -87,6 +97,42 @@
     <!-- End page content -->
   </div>
 
+  <div class="hiddenForm" id="hiddenForm">
+        <div class="add-form">
+            <form action="/lists" method="post">
+                <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
+                <div class="form-group">
+                    {{!-- <button class="lastnext">
+                        <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
+                    </button> --}}
+                </div>
+                <h2>Add a new list</h2>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="list_name">Listname:</label>
+                            <input type="text" class="form-control" id="list_name" placeholder="Name" name="list_name">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <!-- <input type="text" class="form-control definition" id="definition"> -->
+                            <textarea id="description" class="form-control" rows="6" cols="10" charswidth="24" name="description"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button onclick="submit()" class="checked">
+                    <img src="/images/checked.png" height="70" width="70" class="pic">
+                </button>
+
+            </form>
+        </div>
+    </div>
+
   <script>
     // Script to open and close sidebar
     function w3_open() {
@@ -100,6 +146,24 @@
     }
 
     jsonLists = {{{ json listsInfo }}};
+
+    function div_show() {
+        {{!-- document.getElementById("label").style.display = "none"; --}}
+        document.getElementById('hiddenForm').style.display = "block";
+        // alert("This is valid");
+    }
+
+    function div_hide() {
+        document.getElementById('hiddenForm').style.display = "none";
+        document.getElementById('label').style.display = "block";
+    }
+
+    function updateCard(key, value) {
+        var frontdiv = document.getElementById('cardfront');
+        frontdiv.innerHTML = key;
+        var backdiv = document.getElementById('cardback');
+        backdiv.innerHTML = value;
+    }
 
   </script>
 
