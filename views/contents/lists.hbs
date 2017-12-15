@@ -22,7 +22,7 @@
 <body>
     <div class="sidenav">
         {{#each list_json.cardsInfo}}
-        <a href="#" onclick="">{{@key}}</a>
+        <a href="#" onclick="updateCard('{{@key}}', '{{this}}')">{{@key}}</a>
         {{/each}}
     </div>
     <div class="buttons">
@@ -76,8 +76,8 @@
     <label id="label" class="forCard">
         <input type="checkbox" />
         <div class="card">
-            <div class="front">Front</div>
-            <div class="back">Back</div>
+            <div class="front" id="cardfront">Front</div>
+            <div class="back" id="cardback">Back</div>
         </div>
     </label>
 </body>
@@ -91,6 +91,13 @@
     function div_hide() {
         document.getElementById('hiddenForm').style.display = "none";
         document.getElementById('label').style.display = "block";
+    }
+
+    function updateCard(key, value) {
+        var frontdiv = document.getElementById('cardfront');
+        frontdiv.innerHTML = key;
+        var backdiv = document.getElementById('cardback');
+        backdiv.innerHTML = value;
     }
 </script>
 
