@@ -11,7 +11,7 @@ let exportedMethods = {
                 name: name,
                 description: description,
                 author: authorName,
-                cards: {}
+                cards: []
             };
 
             return listsCollection.insertOne(newList).then((newInsertInfo) => {
@@ -90,16 +90,16 @@ let exportedMethods = {
                 return listsCollection.updateOne({
                     _id: id
                 }, {
-                    $addToSet: {
-                        cards: card_id
-                    }
-                }).then(() => {
-                    return listsCollection.findOne({
-                        _id: id
-                    }).then((list) => {
-                        return list.cards[0];
+                        $addToSet: {
+                            cards: card_id
+                        }
+                    }).then(() => {
+                        return listsCollection.findOne({
+                            _id: id
+                        }).then((list) => {
+                            return list.cards[0];
+                        });
                     });
-                });
             });
         });
     }
