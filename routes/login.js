@@ -19,20 +19,6 @@ passport.use(new Strategy(
         }
     }));
 
-// passport.serializeUser(function (user, cb) {
-//     cb(null, user);
-// });
-
-// passport.deserializeUser(function (id, cb) {
-//     usersData.getUserByID(id, function (err, user) {
-//         if (err) {
-//             return cb(err);
-//         }
-//         cb(null, user);
-//     });
-// });
-
-
 passport.serializeUser(function (user, callback) {
     callback(null, user.username)
 });

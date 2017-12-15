@@ -10,7 +10,7 @@ let exportedMethods = {
                 que: question,
                 ans: answer
             };
-            
+
             return cardsCollection.insertOne(newCard).then((newInsertInfo) => {
                 return newInsertInfo.insertedId;
             }).then((newID) => {
@@ -28,10 +28,10 @@ let exportedMethods = {
     getCardByID(id) {
         id = ObjectID(id);
         return cards().then((cardsCollection) => {
-            return cardsCollection.findOne({_id: id}).then((cardInfo) => {
+            return cardsCollection.findOne({ _id: id }).then((cardInfo) => {
                 if (!cardInfo) {
                     throw "Card not found";
-                }          
+                }
 
                 return cardInfo;
             })

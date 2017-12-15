@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<title>List Information</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<header>
+    <h1>
+        <b>List Information</b>
+    </h1>
+</header>
+
+<div>
+    <form action="/lists" method="post">
+        <div>
+            <label>List Name: </label>
+            <input type="text" name="list_name" />
+        </div>
+
+        <div>
+            <label>Description: </label>
+            <input type="text" name="description" />
+        </div>
+
+        <div>
+            <button type="submit" class="btn">Create New List</button>
+        </div>
+    </form>
+</div>
+
+<div>
+    <form action="/lists/{{list._id}}" method="post">
+        <div>
+            <label>Question: </label>
+            <input type="text" name="question" />
+        </div>
+
+        <div>
+            <label>Answer: </label>
+            <input type="text" name="answer" />
+        </div>
+
+        <div>
+            <button type="submit" class="btn">Create New Card</button>
+        </div>
+    </form>
+
+    <p> List Name: {{list_json.name}} </p>
+    <p> List Author: {{list_json.author}} </p>
+    {{!--
+    <p> {{list_json.cardsInfo}} </p> --}}
+
+    <div class="cards">
+        {{#each list_json.cardsInfo}}
+        <div class="card">
+            <p>
+                <b>{{@key}}</b>
+            </p>
+            <p>{{this}}</p>
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+
+<script>
+</script>
+
+</body>
+
+</html>

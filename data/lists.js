@@ -5,13 +5,15 @@ const cards = mongoCollections.cards;
 var ObjectID = require('mongodb').ObjectID;
 
 let exportedMethods = {
-    createNewlist(name, authorName) {
+    createNewlist(name, description, authorName) {
         return lists().then((listsCollection) => {
             let newList = {
                 name: name,
-                author: authorName
+                description: description,
+                author: authorName,
+                cards: {}
             };
-            
+
             return listsCollection.insertOne(newList).then((newInsertInfo) => {
                 return newInsertInfo.insertedId;
             }).then((newID) => {
@@ -39,11 +41,10 @@ let exportedMethods = {
                 return cards().then((cardsCollection) => {
                     var list_cards = {};
                     var pms = [];
-                    for (card_id in listInfo.cards)
-                    {
+                    for (card_id in listInfo.cards) {
                         pms.push(
-                            cardsCollection.findOne( {_id: listInfo.cards[card_id] }).then((card) => {
-                                list_cards[card.que] = card.ans; 
+                            cardsCollection.findOne({ _id: listInfo.cards[card_id] }).then((card) => {
+                                list_cards[card.que] = card.ans;
                             })
                         )
                     };
@@ -52,7 +53,7 @@ let exportedMethods = {
                         return listInfo;
                     });
                 });
-                
+
             })
         })
     },
