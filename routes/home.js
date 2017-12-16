@@ -6,9 +6,7 @@ const listsData = data.lists;
 /* GET home page. */
 router.get('/', function (req, res, next) {
     if (!req.user) {
-        res.render('contents/login', {
-            title: 'Please Login to your account'
-        });
+        res.redirect('/login');
     } else {
 
         listsData.getAllLists().then((lists) => {

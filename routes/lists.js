@@ -20,6 +20,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
+    if (!req.user)
+        res.redirect('/');
+        
     listsData.getListByID(req.params.id).then((list) => {
         res.render('contents/lists', {
             list_json: list
