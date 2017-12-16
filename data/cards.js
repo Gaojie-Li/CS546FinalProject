@@ -68,6 +68,16 @@ let exportedMethods = {
                 });
             });
         });
+    },
+
+    deleteCard(id) {
+        return cards().then((cardsCollection) => {
+            return cardsCollection.removeOne({ _id: id }).then((deletionInfo) => {
+                if (deletionInfo.deletedCount === 0) {
+                    throw (`Could not delete card with id of ${id}`)
+                }
+            });
+        })
     }
 }
 

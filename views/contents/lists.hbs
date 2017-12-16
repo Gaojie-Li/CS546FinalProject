@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-  <title>FlipCard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-  <link rel="stylesheet" href="/css/lists.css">
-  <link rel="stylesheet" href="/css/w3.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
-  <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>FlipCard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="/css/lists.css">
+    <link rel="stylesheet" href="/css/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+    <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
 </head>
 
@@ -29,91 +29,98 @@
         </div>
     </nav>
 
-<div class="w3-container" style="margin-left:300px">
-    <header>
-        <button class="w3-button w3-black add_word" onclick="div_show()">Add Word</button>
-    </header>
-</div>
+    <div class="w3-container" style="margin-left:300px">
+        <header>
+            <button class="w3-button w3-black" onclick="div_show()">Add Word</button>
+            {{!--
+            <form action="/lists/{{list_json._id}}" method="delete">
+                <input type="hidden" name="card_id" id="cardID" value="">
+                <button onclick="submit()" class="w3-button w3-black">Delete current word</button>
+            </form> --}}
+        </header>
+    </div>
 
-  <div class="sidenav">
-    {{#each list_json.cardsInfo}}
-    <a href="#" onclick="updateCard('{{@key}}', '{{this}}')">{{@key}}</a>
-    {{/each}}
-  </div>
-  <div class="buttons">
-    {{!-- <button class="lastnext">
-      <img src="/images/left-arrow.svg" height="120" width="120" onclick="lastOne()">
-    </button>
-    <button class="lastnext">
-      <img src="/images/right-arrow.svg" height="120" width="120" onclick="nextOne()">
-    </button> --}}
-    {{!-- <button class="lastnext">
-      <img src="/images/plus.svg" height="120" width="120" onclick="div_show()">
-    </button> --}}
-  </div>
-
-  <div class="hiddenForm" id="hiddenForm">
-    <div class="add-form">
-      <form action="/lists/{{list_json._id}}" method="post">
-        <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
-        <div class="form-group">
-          <button class="lastnext" type="button">
-            <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
-          </button>
-        </div>
-        <h2>Add a new word</h2>
-        <div class="form-group">
-          <div class="row">
-            <div class="form-group">
-              <label for="word">Word:</label>
-              <input type="text" class="form-control" id="newword" placeholder="new word" name="question">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group">
-              <label for="definition">Definition:</label>
-              <!-- <input type="text" class="form-control definition" id="definition"> -->
-              <textarea id="definition" class="form-control" rows="6" cols="10" charswidth="24" name="answer"></textarea>
-            </div>
-          </div>
-
-        </div>
-
-        <button onclick="submit()" class="checked">
-          <img src="/images/checked.png" height="70" width="70" class="pic">
+    <div class="sidenav">
+        {{#each list_json.cardsInfo}}
+        <a href="#" onclick="updateCard('{{@key}}', '{{this.[0]}}', '{{this.[1]}}')">{{this.[0]}}</a>
+        {{/each}}
+    </div>
+    <div class="buttons">
+        {{!--
+        <button class="lastnext">
+            <img src="/images/left-arrow.svg" height="120" width="120" onclick="lastOne()">
         </button>
-
-      </form>
+        <button class="lastnext">
+            <img src="/images/right-arrow.svg" height="120" width="120" onclick="nextOne()">
+        </button> --}} {{!--
+        <button class="lastnext">
+            <img src="/images/plus.svg" height="120" width="120" onclick="div_show()">
+        </button> --}}
     </div>
-  </div>
 
-  <label id="label" class="forCard">
-    <input type="checkbox" />
-    <div class="card">
-      <div class="front" id="cardfront">Please select a word from the list</div>
-      <div class="back" id="cardback">Please select a word from the list</div>
+    <div class="hiddenForm" id="hiddenForm">
+        <div class="add-form">
+            <form action="/lists/{{list_json._id}}" method="post">
+                <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
+                <div class="form-group">
+                    <button class="lastnext" type="button">
+                        <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
+                    </button>
+                </div>
+                <h2>Add a new word</h2>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="word">Word:</label>
+                            <input type="text" class="form-control" id="newword" placeholder="new word" name="question">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="definition">Definition:</label>
+                            <!-- <input type="text" class="form-control definition" id="definition"> -->
+                            <textarea id="definition" class="form-control" rows="6" cols="10" charswidth="24" name="answer"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button onclick="submit()" class="checked">
+                    <img src="/images/checked.png" height="70" width="70" class="pic">
+                </button>
+
+            </form>
+        </div>
     </div>
-  </label>
+
+    <label id="label" class="forCard">
+        <input type="checkbox" />
+        <div class="card">
+            <div class="front" id="cardfront">Please select a word from the list</div>
+            <div class="back" id="cardback">Please select a word from the list</div>
+        </div>
+    </label>
 </body>
 <script>
-  function div_show() {
-    document.getElementById("label").style.display = "none";
-    document.getElementById('hiddenForm').style.display = "block";
-    // alert("This is valid");
-  }
+    function div_show() {
+        document.getElementById("label").style.display = "none";
+        document.getElementById('hiddenForm').style.display = "block";
+        // alert("This is valid");
+    }
 
-  function div_hide() {
-    document.getElementById('hiddenForm').style.display = "none";
-    document.getElementById('label').style.display = "block";
-  }
+    function div_hide() {
+        document.getElementById('hiddenForm').style.display = "none";
+        document.getElementById('label').style.display = "block";
+    }
 
-  function updateCard(key, value) {
-    var frontdiv = document.getElementById('cardfront');
-    frontdiv.innerHTML = key;
-    var backdiv = document.getElementById('cardback');
-    backdiv.innerHTML = value;
-  }
+    function updateCard(key, que, ans) {
+        var frontdiv = document.getElementById('cardfront');
+        frontdiv.innerHTML = que;
+        var backdiv = document.getElementById('cardback');
+        backdiv.innerHTML = ans;
+        document.getElementById('cardID').value = key;
+    }
 </script>
 
 </html>

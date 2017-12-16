@@ -48,7 +48,7 @@ let exportedMethods = {
                             cardsCollection.findOne({
                                 _id: listInfo.cards[card_id]
                             }).then((card) => {
-                                list_cards[card.que] = card.ans;
+                                list_cards[card._id] = [card.que, card.ans];
                             })
                         )
                     };

@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
     if (!req.user)
         res.redirect('/');
-        
+
     listsData.getListByID(req.params.id).then((list) => {
         res.render('contents/lists', {
             list_json: list
@@ -55,6 +55,16 @@ router.post("/", (req, res) => {
     listsData.createNewlist(req.body.list_name, req.body.description, req.user.username).then((list_id) => {
         // res.status(200).json(list_id);
         res.redirect("/");
+    }).catch((err) => {
+        res.status(404).json({
+            error: err.message
+        });
+    });
+});
+
+router.delete("/:id", (req, res) => {
+    cardsData.deleteCard(req.body.card_id).then(() => {
+        res.redirect('/lists/' + req.params.id);
     }).catch((err) => {
         res.status(404).json({
             error: err.message
