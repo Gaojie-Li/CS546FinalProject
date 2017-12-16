@@ -1,1 +1,1 @@
-{ "options" : { "autoIndexId" : true, "flags" : 1 }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "name" : "_id_", "ns" : "OPM_Flashcards.cards" } ] }
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"OPM_Flashcards.cards"}]}

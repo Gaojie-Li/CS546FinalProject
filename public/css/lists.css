@@ -30,7 +30,14 @@ body {
   -webkit-transition: all 600ms;
   transition: all 600ms;
   z-index: 20;
-  font-size: 40px
+}
+
+.front {
+  font-size: 40px;
+}
+
+.back {
+  font-size: 20px;
 }
 
 .card div {
@@ -49,12 +56,12 @@ body {
   background: #222;
   color: #fff;
   -webkit-transform: rotateX(180deg);
-  padding-top: 100px;
+  /* padding-top: 100px; */
   transform: rotateX(180deg);
 }
 
 .card .front {
-  padding-top: 100px;
+  /* padding-top: 100px; */
 }
 
 label:hover .card {

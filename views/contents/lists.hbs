@@ -42,7 +42,7 @@
 
     <div class="sidenav">
         {{#each list_json.cardsInfo}}
-        <a href="#" onclick="updateCard('{{@key}}', '{{this.[0]}}', '{{this.[1]}}')">{{this.[0]}}</a>
+        <a href="#" onclick="updateCard('{{this.[0]}}', '{{this.[1]}}')">{{this.[0]}}</a>
         {{/each}}
     </div>
     <div class="buttons">
@@ -114,12 +114,12 @@
         document.getElementById('label').style.display = "block";
     }
 
-    function updateCard(key, que, ans) {
+    function updateCard(que, ans) {
         var frontdiv = document.getElementById('cardfront');
         frontdiv.innerHTML = que;
         var backdiv = document.getElementById('cardback');
         backdiv.innerHTML = ans;
-        document.getElementById('cardID').value = key;
+        // document.getElementById('cardID').value = key;
     }
 </script>
 
