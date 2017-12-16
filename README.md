@@ -14,3 +14,5 @@ Then the server should start already, go to your web browser, open:
 localhost:3000
 `
 to start your adventure.
+
+Video: https://www.youtube.com/watch?v=ob1rTI72DeU&feature=youtu.be
