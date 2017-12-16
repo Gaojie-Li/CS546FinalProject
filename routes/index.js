@@ -3,7 +3,8 @@ const loginRoute = require('./login');
 const listsRoute = require('./lists');
 const registerRoute = require('./register');
 const profileRoute = require('./profile');
-const aboutRoute = require('./about')
+const aboutRoute = require('./about');
+const logoutRoute = require('./logout');
 
 const constructorMethod = (app) => {
     app.get('/', function (req, res) {
@@ -20,6 +21,7 @@ const constructorMethod = (app) => {
     app.use('/register', registerRoute);
     app.use('/profile', profileRoute);
     app.use('/about', aboutRoute);
+    app.use('/logout', logoutRoute);
 
     app.use('*', (req, res) => {
         res.status(404).json({ error: 'Not found' });
