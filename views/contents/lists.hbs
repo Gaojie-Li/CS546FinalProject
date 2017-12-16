@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" href="/css/lists.css">
+  <link rel="stylesheet" href="/css/w3.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
@@ -27,7 +28,13 @@
             </div>
         </div>
     </nav>
-    
+
+<div class="w3-container" style="margin-left:300px">
+    <header>
+        <button class="w3-button w3-black add_word" onclick="div_show()">Add Word</button>
+    </header>
+</div>
+
   <div class="sidenav">
     {{#each list_json.cardsInfo}}
     <a href="#" onclick="updateCard('{{@key}}', '{{this}}')">{{@key}}</a>
@@ -40,9 +47,9 @@
     <button class="lastnext">
       <img src="/images/right-arrow.svg" height="120" width="120" onclick="nextOne()">
     </button> --}}
-    <button class="lastnext">
+    {{!-- <button class="lastnext">
       <img src="/images/plus.svg" height="120" width="120" onclick="div_show()">
-    </button>
+    </button> --}}
   </div>
 
   <div class="hiddenForm" id="hiddenForm">
@@ -50,7 +57,7 @@
       <form action="/lists/{{list_json._id}}" method="post">
         <!-- <img class="exitButton" id="close" src="../img/closeButton.svg" height="50" width="50" onclick="div_hide()"> -->
         <div class="form-group">
-          <button class="lastnext">
+          <button class="lastnext" type="button">
             <img class="exitButton" id="close" src="/images/closeButton.svg" height="85" width="85" onclick="div_hide()">
           </button>
         </div>
